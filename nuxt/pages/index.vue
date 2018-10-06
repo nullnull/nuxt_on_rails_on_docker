@@ -7,9 +7,9 @@
 import axios from 'axios'
 export default {
   async fetch ({ store, params }) {
-    let { data } = await axios.get('http://rails:3000/users')
+    let { data } = await axios.get(`${process.env.apiUrl}/users`)
     store.commit('setUsers', data)
-  }
+  },
 }
 </script>
 
