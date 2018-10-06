@@ -1,0 +1,43 @@
+version: '3'
+
+services:
+  mysql:
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=1
+    image: mysql:5.7
+    ports:
+      - 3306:3306
+    volumes:
+      - mysql-store:/var/lib/mysql
+  redis:
+    image: redis
+    volumes:
+      - redis-store:/data
+  rails:
+    build: .
+    command: /bin/sh -c "rm -rf /app/tmp/pids/server.pid && bin/rails server -b 0.0.0.0 -p 3000"
+    depends_on:
+      - mysql
+      - redis
+    environment:
+      CC_TEST_REPORTER_ID:
+      DATABASE_HOST: mysql
+      SELENIUM_URL: http://selenium-server:4444/wd/hub
+    ports:
+      - '3000:3000'
+    tty: true
+    volumes:
+      - .:/app
+      - bundler-store:/usr/local/bundle
+  selenium-server:
+    image: selenium/standalone-chrome-debug:3.11.0-bismuth
+    ports:
+      - 4444:4444
+      - 5900:5900
+    volumes:
+      - /dev/shm:/dev/shm
+
+volumes:
+  mysql-store:
+  redis-store:
+  bundler-store:
