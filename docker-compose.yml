@@ -30,12 +30,23 @@ services:
       - .:/app
       - bundler-store:/usr/local/bundle
   nuxt:
-    command: yarn run dev
+    command: /bin/sh -c 'API_URL=http://rails:5000 yarn nuxt'
     environment:
       HOST: 0.0.0.0
     image: node:10-alpine
     ports:
       - '3000:3000'
+    tty: true
+    volumes:
+      - "./nuxt:/app"
+    working_dir: /app
+  nuxt-test:
+    command: /bin/sh -c 'API_URL=http://rails:5001 yarn nuxt'
+    environment:
+      HOST: 0.0.0.0
+    image: node:10-alpine
+    ports:
+      - '3001:3000'
     tty: true
     volumes:
       - "./nuxt:/app"
