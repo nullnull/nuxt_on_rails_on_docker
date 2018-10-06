@@ -21,6 +21,9 @@ jobs:
           name: docker-compose -p nuxt_on_rails_on_docker run --rm rails bundle install --jobs=4
           command: docker-compose -p nuxt_on_rails_on_docker run --rm rails bundle install --jobs=4
       - run:
+          name: docker-compose -p nuxt_on_rails_on_docker run --rm nuxt yarn install
+          command: docker-compose -p nuxt_on_rails_on_docker run --rm nuxt yarn install
+      - run:
           name: docker-compose up
           command: docker-compose -p nuxt_on_rails_on_docker up -d
       - run:

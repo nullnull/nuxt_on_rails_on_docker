@@ -5,8 +5,8 @@
   "author": "Katsuma Narisawa <face.the.music721@gmail.com>",
   "private": true,
   "scripts": {
-    "dev": "nuxt",
-    "build": "nuxt build",
+    "dev": "API_URL=http://localhost:5000 nuxt",
+    "build": "API_URL=http://localhost:5000 nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",

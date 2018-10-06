@@ -5,6 +5,9 @@ require File.expand_path('../../config/environment', __FILE__)
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
+require 'capybara/rails'
+require 'capybara-screenshot/rspec'
+
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -31,8 +34,7 @@ rescue ActiveRecord::PendingMigrationError => e
   exit 1
 end
 RSpec.configure do |config|
-  # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
-  config.fixture_path = "#{::Rails.root}/spec/fixtures"
+  config.include FactoryBot::Syntax::Methods
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
@@ -58,4 +60,42 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+
+  Capybara.register_driver :chrome do |app|
+    Capybara::Selenium::Driver.new(
+      app,
+      browser: :chrome,
+      desired_capabilities: Selenium::WebDriver::Remote::Capabilities.chrome(
+        chrome_options: {
+          args: %w(disable-gpu no-sandbox --window-size=1280x3000).push(ENV['USE_HEADLESS_BROWSER'].present? ? 'headless' : nil).compact,
+        }
+      ),
+      url: ENV.fetch('SELENIUM_URL')
+    )
+  end
+
+  Capybara.configure do |conf|
+    conf.default_max_wait_time = 5
+    conf.default_driver = :chrome
+    conf.javascript_driver = :chrome
+
+    conf.run_server = true
+    conf.server_host = '0.0.0.0'
+    conf.server_port = '5001'
+  end
+
+  config.before(:each, type: :feature) do
+    Capybara.server = :webrick
+    Capybara.current_driver = :chrome
+    Capybara.javascript_driver = :chrome
+    Capybara.reset_sessions!
+    Capybara.app_host = 'http://nuxt-test:3000/'
+  end
+
+  Capybara::Screenshot.register_driver(:chrome) do |driver, path|
+    driver.browser.save_screenshot(path)
+  end
+   Capybara::Screenshot.register_filename_prefix_formatter(:rspec) do |example|
+    "screenshot_#{example.description.tr(' ', '-')}"
+  end
 end
