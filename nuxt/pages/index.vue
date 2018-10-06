@@ -1,5 +1,6 @@
-<template>
-  <h1>user ids: {{ $store.state.users.map(x => x.id) }}</h1>
+<template lang="pug">
+  h1
+    | user ids: {{ $store.state.users.map(x => x.id) }}
 </template>
 
 <script>
