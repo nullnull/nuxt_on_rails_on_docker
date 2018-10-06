@@ -11,3 +11,8 @@ export default {
   }
 }
 </script>
+
+<style lang="stylus" scoped>
+h1
+  color gray
+</style>
