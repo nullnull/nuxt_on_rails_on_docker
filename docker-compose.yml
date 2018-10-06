@@ -24,11 +24,22 @@ services:
       DATABASE_HOST: mysql
       SELENIUM_URL: http://selenium-server:4444/wd/hub
     ports:
-      - '3000:3000'
+      - '5000:3000'
     tty: true
     volumes:
       - .:/app
       - bundler-store:/usr/local/bundle
+  nuxt:
+    command: yarn run dev
+    environment:
+      HOST: 0.0.0.0
+    image: node:10-alpine
+    ports:
+      - '3000:3000'
+    tty: true
+    volumes:
+      - "./nuxt:/app"
+    working_dir: /app
   selenium-server:
     image: selenium/standalone-chrome-debug:3.11.0-bismuth
     ports:
