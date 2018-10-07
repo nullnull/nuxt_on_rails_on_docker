@@ -1,0 +1,18 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: nuxt-app
+  labels:
+    app: nuxt-app
+spec:
+  template:
+    metadata:
+      labels:
+        app: nuxt-app
+    spec:
+      containers:
+        - name: nuxt
+          image: gcr.io/gke-sample-201809/nuxt-rails-gke-sample-nuxt
+          ports:
+            - containerPort: 3000
+          command: ["HOST=0.0.0.0", "API_URL=35.189.134.49", "yarn", "nuxt", "start"]

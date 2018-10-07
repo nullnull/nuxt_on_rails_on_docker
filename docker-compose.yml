@@ -14,7 +14,7 @@ services:
     volumes:
       - redis-store:/data
   rails:
-    build: .
+    build: ./rails/
     command: /bin/sh -c "rm -rf /app/tmp/pids/server.pid && bin/rails server -b 0.0.0.0 -p 3000"
     depends_on:
       - mysql
@@ -27,10 +27,10 @@ services:
       - '5000:3000'
     tty: true
     volumes:
-      - .:/app
+      - ./rails:/app
       - bundler-store:/usr/local/bundle
   nuxt:
-    command: /bin/sh -c 'API_URL=http://rails:5000 yarn nuxt'
+    command: /bin/sh -c 'API_URL=http://rails:3000 yarn nuxt'
     environment:
       HOST: 0.0.0.0
     image: node:10-alpine
@@ -39,6 +39,7 @@ services:
     tty: true
     volumes:
       - "./nuxt:/app"
+      - node-modules-store:/app/node_modules
     working_dir: /app
   nuxt-test:
     command: /bin/sh -c 'API_URL=http://rails:5001 yarn nuxt'
@@ -50,6 +51,7 @@ services:
     tty: true
     volumes:
       - "./nuxt:/app"
+      - node-modules-store:/app/node_modules
     working_dir: /app
   selenium-server:
     image: selenium/standalone-chrome-debug:3.11.0-bismuth
@@ -63,3 +65,4 @@ volumes:
   mysql-store:
   redis-store:
   bundler-store:
+  node-modules-store:
