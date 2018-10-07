@@ -34,9 +34,18 @@ jobs:
           command: |
             curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./rails/cc-test-reporter
             chmod +x ./rails/cc-test-reporter
+            ./rails/cc-test-reporter before-build
       - run:
           name: bundle exec rspec spec
-          command: docker exec nuxt_on_rails_on_docker_rails_1 bash -c './cc-test-reporter before-build && bundle exec rspec spec && ./cc-test-reporter after-build --coverage-input-type simplecov --exit-code $? && mkdir -p /app/tmp/capybara && mkdir -p /app/coverage'
+          command: docker exec nuxt_on_rails_on_docker_rails_1 bash -c 'bundle exec rspec spec && mkdir -p /app/tmp/capybara && mkdir -p /app/coverage'
+      - run:
+          name: Send results to Code Climate
+          command: |
+            cp -r ./rails/coverage .
+            mv ./rails/cc-test-reporter .
+            mkdir -p /app/spec/
+            cp ./rails/spec/rails_helper.rb /app/spec/
+            ./cc-test-reporter after-build --coverage-input-type simplecov --exit-code $?
       - run:
           name: Copy artifacts
           command: |
