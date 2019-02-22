@@ -11,4 +11,4 @@ spec:
       targetPort: 5000
       protocol: TCP
   selector:
-    app: sample-app
+    app: rails-app
