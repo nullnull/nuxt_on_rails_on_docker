@@ -29,6 +29,13 @@ services:
     volumes:
       - ./rails:/app
       - bundler-store:/usr/local/bundle
+  rubocop:
+    build: ./rails/
+    command: bundle exec guard
+    tty: true
+    volumes:
+      - ./rails:/app
+      - bundler-store:/usr/local/bundle
   nuxt:
     command: /bin/sh -c 'API_URL=http://rails:3000 yarn nuxt'
     environment:

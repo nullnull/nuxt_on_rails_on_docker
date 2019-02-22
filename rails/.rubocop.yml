@@ -1,0 +1,38 @@
+AllCops:
+  Exclude:
+    - 'db/schema.rb'
+    - vendor/**/*
+  TargetRubyVersion: '2.5.1'
+
+Metrics/AbcSize:
+  Max: 30
+
+Metrics/ClassLength:
+  Enabled: false
+
+Metrics/LineLength:
+  Max: 200
+
+Metrics/MethodLength:
+  Max: 30
+
+Metrics/ModuleLength:
+  Enabled: false
+
+Style/AsciiComments:
+  Enabled: false
+
+Style/ParallelAssignment:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  EnforcedStyle: compact
+
+Style/Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Rails:
+  Enabled: true
