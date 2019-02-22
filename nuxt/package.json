@@ -11,7 +11,8 @@
     "generate": "nuxt generate",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "prettier-watch": "onchange '**/*.js' '**/*.vue' '**/*.scss' -- prettier --write {{changed}}",
-    "precommit": "npm run lint"
+    "precommit": "npm run lint",
+    "test": "jest --config jest.config.js"
   },
   "dependencies": {
     "axios": "^0.18.0",
