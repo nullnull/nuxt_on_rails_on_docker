@@ -1,9 +1,9 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
-require File.expand_path('../../config/environment', __FILE__)
+require File.expand_path('../config/environment', __dir__)
 # Prevent database truncation if the environment is production
-abort("The Rails environment is running in production mode!") if Rails.env.production?
+abort('The Rails environment is running in production mode!') if Rails.env.production?
 require 'rspec/rails'
 require 'capybara/rails'
 require 'capybara-screenshot/rspec'
@@ -67,7 +67,7 @@ RSpec.configure do |config|
       browser: :chrome,
       desired_capabilities: Selenium::WebDriver::Remote::Capabilities.chrome(
         chrome_options: {
-          args: %w(disable-gpu no-sandbox --window-size=1280x3000).push(ENV['USE_HEADLESS_BROWSER'].present? ? 'headless' : nil).compact,
+          args: %w[disable-gpu no-sandbox --window-size=1280x3000].push(ENV['USE_HEADLESS_BROWSER'].present? ? 'headless' : nil).compact
         }
       ),
       url: ENV.fetch('SELENIUM_URL')
@@ -95,7 +95,7 @@ RSpec.configure do |config|
   Capybara::Screenshot.register_driver(:chrome) do |driver, path|
     driver.browser.save_screenshot(path)
   end
-   Capybara::Screenshot.register_filename_prefix_formatter(:rspec) do |example|
+  Capybara::Screenshot.register_filename_prefix_formatter(:rspec) do |example|
     "screenshot_#{example.description.tr(' ', '-')}"
   end
 end
