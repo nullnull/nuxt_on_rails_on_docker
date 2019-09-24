@@ -20,7 +20,7 @@ const getQueryStrings = query => {
 }
 
 export default async (action, resource, query, headers, options, obj = {}) => {
-  const apiUrl = 'http://localhost:5000'
+  const apiUrl = process.env.apiUrl
   const method = actionToMethod[action]
 
   if (action === 'index') {

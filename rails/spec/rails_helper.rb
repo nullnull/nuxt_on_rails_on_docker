@@ -7,6 +7,7 @@ abort('The Rails environment is running in production mode!') if Rails.env.produ
 require 'rspec/rails'
 require 'capybara/rails'
 require 'capybara-screenshot/rspec'
+Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
 # Add additional requires below this line. Rails is not loaded until this point!
 
@@ -91,6 +92,10 @@ RSpec.configure do |config|
     Capybara.reset_sessions!
     Capybara.app_host = 'http://nuxt-test:3000/'
   end
+
+  # config.after(:each, type: :feature) do
+  #   expect(console_logs_formatted).to eq('')
+  # end
 
   Capybara::Screenshot.register_driver(:chrome) do |driver, path|
     driver.browser.save_screenshot(path)

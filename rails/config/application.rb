@@ -32,9 +32,21 @@ module NuxtOnRailsOnDocker
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
 
+    config.hosts << 'rails'
+
     config.middleware.insert_before 0, Rack::Cors do
       allow do
         origins 'localhost:3000'
+        resource '*', headers: :any, methods: %i[get post put delete options]
+      end
+
+      # for debug with test environment
+      allow do
+        origins 'localhost:3001'
+        resource '*', headers: :any, methods: %i[get post put delete options]
+      end
+      allow do
+        origins 'nuxt-test:3000'
         resource '*', headers: :any, methods: %i[get post put delete options]
       end
     end

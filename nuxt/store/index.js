@@ -7,5 +7,5 @@ import requestCallback from '../lib/request_callback'
 
 Vapi.setConfig({
   requestCallback
-  // apiUrl: 'http://localhost:5000'
+  // apiUrl: process.env.apiUrl
 })
