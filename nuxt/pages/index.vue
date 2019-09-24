@@ -4,9 +4,12 @@
     .uk-card.uk-card-default.uk-card-body.uk-width-1-1
       h1 Tasks 
       nuxt-link(to="tasks/new")
-        button.uk-button.uk-button-primary
+        button#add.uk-button.uk-button-primary
           | add
-      table.uk-table.uk-table-striped
+      template(v-if="tasks.length === 0")
+        p.uk-text-center
+          | no tasks
+      table.uk-table.uk-table-striped(v-else)
         thead
           tr
             th name

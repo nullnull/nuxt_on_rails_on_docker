@@ -9,7 +9,7 @@
           .uk-form-controls
             input#form-title.uk-input(v-model="title")
       .uk-margin-bottom
-      button.uk-button.uk-button-primary(@click="create")
+      button#submit.uk-button.uk-button-primary(@click="create")
         | Create
       nuxt-link(to="/").uk-margin-left
         button.uk-button.uk-button-default
