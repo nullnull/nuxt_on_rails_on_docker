@@ -12,7 +12,7 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = task.new(task_params)
+    @task = Task.new(task_params)
 
     if @task.save
       render json: @task, status: :created, location: @task
@@ -36,10 +36,10 @@ class TasksController < ApplicationController
   private
 
   def set_task
-    @task = task.find(params[:id])
+    @task = Task.find(params[:id])
   end
 
   def task_params
-    params.fetch(:task, {})
+    params.fetch(:task, {}).permit(:title)
   end
 end
