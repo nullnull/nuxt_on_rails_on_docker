@@ -27,7 +27,7 @@ $ docker-compose run --rm rails bin/setup
 $ docker-compose run --rm nuxt yarn install
 $ docker-compose up -d
 $ open http://localhost:3000 # nuxt
-$ open http://localhost:5000/users # rails
+$ open http://localhost:5000/tasks # rails
 ```
 
 To shutdown server and remove containers

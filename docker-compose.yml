@@ -15,7 +15,7 @@ services:
       - redis-store:/data
   rails:
     build: ./rails/
-    command: /bin/sh -c "rm -rf /app/tmp/pids/server.pid && bin/rails server -b 0.0.0.0 -p 3000"
+    command: /bin/sh -c "rm -rf /app/tmp/pids/server.pid && bin/rails server -b 0.0.0.0 -p 5000"
     depends_on:
       - mysql
       - redis
@@ -24,7 +24,8 @@ services:
       DATABASE_HOST: mysql
       SELENIUM_URL: http://selenium-server:4444/wd/hub
     ports:
-      - '5000:3000'
+      - '5000:5000'
+      - '5001:5001'
     tty: true
     volumes:
       - ./rails:/app
@@ -37,7 +38,7 @@ services:
       - ./rails:/app
       - bundler-store:/usr/local/bundle
   nuxt:
-    command: /bin/sh -c 'API_URL=http://rails:3000 yarn nuxt'
+    command: /bin/sh -c 'API_URL=http://rails:5000 yarn nuxt'
     environment:
       HOST: 0.0.0.0
     image: node:10-alpine
