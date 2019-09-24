@@ -1,7 +1,7 @@
-FROM ruby:2.5.1
+FROM ruby:2.6.4
 
 RUN apt-get update -qq && \
-    apt-get install -y apt-utils build-essential apt-transport-https mysql-client libxml2-dev
+    apt-get install -y apt-utils build-essential apt-transport-https libxml2-dev
 
 RUN bundle config path /usr/local/bundle
 ENV APP_ROOT /app
