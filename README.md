@@ -3,13 +3,13 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/2e1f1bb8632cdfa0923e/maintainability)](https://codeclimate.com/github/nullnull/nuxt_on_rails_on_docker/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/2e1f1bb8632cdfa0923e/test_coverage)](https://codeclimate.com/github/nullnull/nuxt_on_rails_on_docker/test_coverage)
 
-A powerful template with the minimun you need to start to work with Rails 5.2 + Nuxt.js 2.0 :tada:
+A powerful template with the minimun you need to start to work with Rails 6.0 + Nuxt.js 2.9 :tada:
 Please clone this repository and use as starter template if you want to save your time.
 
 This repository contains following settings.
 
-* Nuxt.js 2.0 (with SSR)
-* Ruby on Rails 5.2 (as API Server)
+* Nuxt.js 2.9 (with SSR)
+* Ruby on Rails 6.0 (as API Server)
 * Docker
 * settings for Google Kubernetes Engine
 * CircleCI, Code Climate
