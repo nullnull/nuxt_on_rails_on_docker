@@ -7077,10 +7077,10 @@ number-is-nan@^1.0.0:
   resolved "https://registry.yarnpkg.com/number-is-nan/-/number-is-nan-1.0.1.tgz#097b602b53422a522c1afb8790318336941a011d"
   integrity sha1-CXtgK1NCKlIsGvuHkDGDNpQaAR0=
 
-nuxt-resource-based-api@^0.2.35:
-  version "0.2.35"
-  resolved "https://registry.yarnpkg.com/nuxt-resource-based-api/-/nuxt-resource-based-api-0.2.35.tgz#3859761944ca3c6f73519b0df7dc41caef7bc3db"
-  integrity sha512-UfOjhSyh9ITwe1+4tPSpPnZdCAD1YSs5ic+7OSUKrtBRRANoL8IU0Po4q2dppYPGMaDxX2UtH1HmXk4bCWfTpw==
+nuxt-resource-based-api@^0.2.36:
+  version "0.2.36"
+  resolved "https://registry.yarnpkg.com/nuxt-resource-based-api/-/nuxt-resource-based-api-0.2.36.tgz#89fae32cc6a8a24b8205e928ab7a2d9100c28ed9"
+  integrity sha512-GpmZ8Yu90ENnWI7ZHy4whugW9Bi9sftYnWLt1BC/Wsixs3nrQrgNfRgB/ti15kNzodOn4aLgGRtVtOthwK0f/g==
   dependencies:
     "@types/node" "^12.7.5"
     axios "^0.19.0"

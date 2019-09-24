@@ -1,15 +1,11 @@
-import Vuex from 'vuex'
+// If you want to mutate vuex store state outside mutation handlers, set false.
+// If false, initializing or editing entity will become very easy. See pages/tasks/_id/edit.vue for example.
+export const strict = false
 
-const store = () => new Vuex.Store({
+import Vapi from 'nuxt-resource-based-api'
+import requestCallback from '../lib/request_callback'
 
-  state: {
-    users: []
-  },
-  mutations: {
-    setUsers (state, users) {
-      state.users = users;
-    }
-  }
+Vapi.setConfig({
+  requestCallback
+  // apiUrl: 'http://localhost:5000'
 })
-
-export default store
