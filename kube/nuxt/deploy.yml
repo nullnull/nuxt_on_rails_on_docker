@@ -13,6 +13,13 @@ spec:
       containers:
         - name: nuxt
           image: gcr.io/gke-sample-201809/nuxt-rails-gke-sample-nuxt
+          env:
+            - name: HOST
+              value: 0.0.0.0
+            - name: API_URL
+              value: 35.184.158.167
           ports:
             - containerPort: 3000
-          command: ["HOST=0.0.0.0", "API_URL=35.189.134.49", "yarn", "nuxt", "start"]
+          # command: ["sleep", "1000"]
+          command: ["yarn", "nuxt", "start", "-p", "3000"]
+          # command: ["HOST=0.0.0.0", "API_URL=35.189.134.49", "yarn", "nuxt", "start"]

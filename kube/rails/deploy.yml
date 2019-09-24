@@ -16,11 +16,18 @@ spec:
           ports:
             - containerPort: 5000
           command: ["bundle", "exec", "rails", "server", "-p", "5000", "-b", "0.0.0.0"]
+          # command: ["bundle", "exec", "ruby", "-e", "sleep(10000)"]
+          # command: ["bundle", "exec", "rake", "db:setup"]
           env:
             - name: DATABASE_HOST
               value: 127.0.0.1
             - name: DATABASE_PORT
               value: "3306"
+            - name: SECRET_KEY_BASE
+              valueFrom:
+                secretKeyRef:
+                  name: rails
+                  key: secret-key-base
             - name: DATABASE_USERNAME
               valueFrom:
                 secretKeyRef:
@@ -38,7 +45,7 @@ spec:
         - name: cloudsql-proxy
           image: gcr.io/cloudsql-docker/gce-proxy:1.11
           command: ["/cloud_sql_proxy",
-                    "-instances=gke-sample-201809:asia-northeast1:rails-gke-sample-mysql=tcp:3306",
+                    "-instances=gke-sample-201809:asia-northeast1:gke-sample-201809-sql=tcp:3306",
                     "-credential_file=/secrets/cloudsql/credentials.json"]
           volumeMounts:
             - name: cloudsql-instance-credentials
