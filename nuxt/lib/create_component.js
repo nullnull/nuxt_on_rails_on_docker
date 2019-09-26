@@ -1,11 +1,11 @@
 import Vue from 'vue'
-import Vapi from 'nuxt-resource-based-api'
+import Napi from 'nuxt-resource-based-api'
 
 export default function createComponent(resources) {
   return Vue.extend({
-    fetch: Vapi.generateFetch(resources),
-    computed: Vapi.generateComputed(resources),
-    methods: Vapi.generateMethods(resources),
+    fetch: Napi.generateFetch(resources),
+    computed: Napi.generateComputed(resources),
+    methods: Napi.generateMethods(resources),
     transition: {
       mode: 'out-in',
       enterActiveClass: 'uk-animation-slide-left-small',

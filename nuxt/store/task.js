@@ -1,6 +1,6 @@
-import Vapi from 'nuxt-resource-based-api'
+import Napi from 'nuxt-resource-based-api'
 
-export const { state, mutations, actions } = Vapi.createStore('task', [
+export const { state, mutations, actions } = Napi.createStore('task', [
   'index',
   'show',
   'create',
