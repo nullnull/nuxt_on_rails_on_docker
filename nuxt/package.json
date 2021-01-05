@@ -15,7 +15,7 @@
     "test": "jest --config jest.config.js"
   },
   "dependencies": {
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "nuxt": "^2.9.2",
     "nuxt-resource-based-api": "^0.2.36",
     "pug": "^2.0.4",
